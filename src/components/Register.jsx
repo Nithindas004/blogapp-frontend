@@ -30,10 +30,10 @@ const Register = () => {
                             "password":""
                         }
                     )
-                    alert("success")
+                    alert("Successfully registerd. Pls Login... ")
                     
                 } else {
-                    alert("Failed")
+                    alert("Something went wrong")
                 }
             }
         )
