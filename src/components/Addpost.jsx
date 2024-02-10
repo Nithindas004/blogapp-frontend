@@ -5,7 +5,7 @@ import BlogNav from './BlogNav'
 const Addpost = () => {
     const [input,setInput] = new useState(
         {
-            "userId":"",
+            "userId":sessionStorage.getItem("userid"),
             "post":""
         }
     )

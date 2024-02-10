@@ -19,8 +19,9 @@ const Signin = () => {
         axios.post("http://localhost:3001/api/blog/signin",input).then(
             (response)=>{
                 if (response.data.status=="success") {
-                    console.log(response.data.userdata._id)
-                    //nav("/addpost")
+                    //console.log(response.data.userdata._id)
+                    sessionStorage.setItem("userid",response.data.userdata._id)
+                    nav("/addpost")
                 } else if(response.data.status=="incorrect password") {
                     alert("Incorrect Password")
                 }
