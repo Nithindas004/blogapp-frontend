@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+
 
 const Signin = () => {
     const [input,setInput] = new useState(
@@ -9,6 +11,7 @@ const Signin = () => {
             "password":""
         }
     )
+    const nav=useNavigate()
     const inputHandler=(event)=>{
         setInput({...input,[event.target.name]:event.target.value})
     }
@@ -16,9 +19,15 @@ const Signin = () => {
         axios.post("http://localhost:3001/api/blog/signin",input).then(
             (response)=>{
                 if (response.data.status=="success") {
-                    alert("Success")
-                } else {
-                    alert("Failed")
+                    //console.log(response.data.userdata._id)
+                    sessionStorage.setItem("userid",response.data.userdata._id)
+                    nav("/addpost")
+                } else if(response.data.status=="incorrect password") {
+                    alert("Incorrect Password")
+                }
+                else
+                {
+                    alert("No user Found")
                 }
             }
         )
